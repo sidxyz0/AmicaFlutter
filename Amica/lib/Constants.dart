@@ -7,5 +7,6 @@ class Constants {
   static double appMainFontSize = 16;
   static double appMainSmallFontSize = 15;
   static Color appGreyColor = Colors.grey[200]!;
+  static TextStyle headingTextStyle = TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black);
 
 }

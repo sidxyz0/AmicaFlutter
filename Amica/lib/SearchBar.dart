@@ -9,13 +9,14 @@ class SearchBar extends StatefulWidget {
 }
 
 class _SearchBar extends State<SearchBar> {
-  Timer timer = new Timer(Duration(seconds: 2), () => print(""));
+  //UI Starts
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
           child: TextField(
+            controller: this.searchText,
             onChanged: (searchStr) => this.searchFn(searchStr),
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
@@ -26,9 +27,11 @@ class _SearchBar extends State<SearchBar> {
               hintStyle: TextStyle(
                   fontSize: Constants.appMainFontSize, letterSpacing: 1),
               prefixIcon: Container(
-                  child: Icon(Icons.search_outlined,
-                      color: Constants.appMainColor, size: 25),
-                  padding: EdgeInsets.only(left: 10)),
+                  child: IconButton(
+                      icon: Icon(this.searchIcon,
+                          color: Constants.appMainColor, size: 25),
+                          onPressed: ()=> this.removeSearchResults(),),
+                  padding: EdgeInsets.only(left: 5)),
               prefixIconConstraints:
                   BoxConstraints(maxHeight: 40, maxWidth: 40),
               suffixIcon: Container(
@@ -50,9 +53,30 @@ class _SearchBar extends State<SearchBar> {
       ],
     );
   }
+  // UI Ends
+
+  TextEditingController searchText = new TextEditingController(text: '');
+  Timer timer = new Timer(Duration(seconds: 2), () => print(""));
+  IconData searchIcon = Icons.search_outlined;
 
   void searchFn(String str) {
+    setState(() {
+      if (str != '') {
+        this.searchIcon = Icons.arrow_back_ios_new;
+      } else {
+        this.searchIcon = Icons.search_outlined;
+      }
+    });
     this.timer.cancel();
     this.timer = Timer(Duration(seconds: 2), () => print(str));
+  }
+
+  removeSearchResults(){
+    if(this.searchText.text!=''){
+      this.searchText.text = '';
+      setState(() {
+        this.searchIcon = Icons.search_outlined;
+      });
+    }
   }
 }

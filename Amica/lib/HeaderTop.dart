@@ -20,10 +20,25 @@ class _HeaderTop extends State<HeaderTop> {
       ),
       leadingWidth: 45,
       titleSpacing: 0,
-      title: Text(
-        'Sec 12, Noida',
-        style: TextStyle(
-            color: Colors.black, fontSize: Constants.appMainSmallFontSize),
+      title: Column(
+        children: [
+          Container(
+            child: Text(
+              'Home',
+              style: Constants.headingTextStyle,
+            ),
+            width: 200,
+          ),
+          Container(
+            child: Text(
+              'Sec 12, Noida',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: Constants.appMainSmallFontSize),
+            ),
+            width: 200,
+          )
+        ],
       ),
       actions: [
         Container(
