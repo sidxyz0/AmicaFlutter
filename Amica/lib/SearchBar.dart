@@ -25,12 +25,17 @@ class _SearchBar extends State<SearchBar> {
                   EdgeInsets.only(top: 10, right: 0, bottom: 10, left: 0),
               hintText: "Find your Amica...",
               hintStyle: TextStyle(
-                  fontSize: Constants.appMainFontSize, letterSpacing: 1),
+                fontSize: Constants.appMainFontSize,
+                letterSpacing: 1,
+                color: Constants.appMainDarkGreyText,
+                fontWeight: FontWeight.normal,
+              ),
               prefixIcon: Container(
                   child: IconButton(
-                      icon: Icon(this.searchIcon,
-                          color: Constants.appMainColor, size: 25),
-                          onPressed: ()=> this.removeSearchResults(),),
+                    icon: Icon(this.searchIcon,
+                        color: Constants.appMainColor, size: 25),
+                    onPressed: () => this.removeSearchResults(),
+                  ),
                   padding: EdgeInsets.only(left: 5)),
               prefixIconConstraints:
                   BoxConstraints(maxHeight: 40, maxWidth: 40),
@@ -71,8 +76,8 @@ class _SearchBar extends State<SearchBar> {
     this.timer = Timer(Duration(seconds: 2), () => print(str));
   }
 
-  removeSearchResults(){
-    if(this.searchText.text!=''){
+  removeSearchResults() {
+    if (this.searchText.text != '') {
       this.searchText.text = '';
       setState(() {
         this.searchIcon = Icons.search_outlined;
